@@ -1,9 +1,13 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package javaapplication1;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
-
 /**
  *
  * @author Ahlam LEBSIR
@@ -16,6 +20,8 @@ public class Welcome extends javax.swing.JFrame {
     public Welcome() {
         initComponents();
     }
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
@@ -41,6 +47,11 @@ public class Welcome extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 153, 102));
         jButton1.setText("Connexion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 102));
         jButton2.setText("Enregistrer");
@@ -145,30 +156,52 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-      
+        // TODO add your handling code here:
+     
     }                                        
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) { /* event mouse to close window                               
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {                                     
          System.exit(0);
     }                                    
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {   /* event mouse                                  
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {                                     
       this.setState(JFrame.ICONIFIED);
     }                                    
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {  /create a new window with clicking into registrement                                    
-     register rgf= new register();
-     rgf.setVisible(true);
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
+     register rgf;
+        try {
+            rgf = new register();
+            rgf.setVisible(true);
      rgf.pack();
      rgf.setLocationRelativeTo(null);
      rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        } catch (SQLException ex) {
+            Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     this.setVisible(false);//fermeer la fetre de connexion et ouvrire une nouvelle
+     
     }                                     
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+                 Connecter cnx;
+            cnx = new Connecter();
+            cnx.setVisible(true);
+     cnx.pack();
+     cnx.setLocationRelativeTo(null);
+     cnx.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(false);//fermeer la fenetre de connexion et ouvrire une nouvelle
+      
+      
+     
+    }                                        
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -196,7 +229,7 @@ public class Welcome extends javax.swing.JFrame {
         
     }
 
-    // Variables declaration                   
+    // Variables declaration                 
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -205,5 +238,5 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-                    
+                      
 }
