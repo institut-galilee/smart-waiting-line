@@ -242,8 +242,8 @@ Connection cnx= null;
             new Welcome().setVisible(true);
              try{
             String host ="smtp.gmail.com" ;
-            String user = "barbershop.courbevoie@gmail.com";
-            String pass = "barbershop2019";
+            String user = "amail@gmail.com";
+            String pass = "password";
             String to = Vmail.getText();
             String from = "barbershop.courbevoie@gmail.com";
             String subject = "Welcom";
