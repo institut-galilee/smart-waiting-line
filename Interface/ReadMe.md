@@ -6,7 +6,7 @@
 - Téléchargez WampServer (login: **root**, mot de passe :  vide) [here](http://www.wampserver.com/)
 -  Importer la base de données [ici](https://github.com/institut-galilee/smart-waiting-line/blob/master/Interface/salon%20(1).sql)
 
-#####**Dans l’éditeur** :
+##### **Dans l’éditeur** :
 - Importez votre projet,
 - vous trouverez un Dossier nommer **leb** fais Référence  au librairies utiliser que vous devez télécharger puis elle ne sont pas incluse dans l’éditeur, pour les ajouter c'est simple:
 - cliquer droit sur votre projet: Propriétés> Librairies> add library> create> rentrer un nom> ensuite une fenetre va apparaitre et ajouter les jar du doc leb pour  JavaMail,(c'est pareil pour Zxing),>ok>ok
