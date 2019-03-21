@@ -5,6 +5,7 @@
 - Téléchargez un éditeur  **Eclipse** ou **NetBeans** [here](https://www.clubic.com/telecharger-fiche429613-netbeans-1.html)
 - Téléchargez WampServer (login: **root**, mot de passe :  vide) [here](http://www.wampserver.com/)
 -  Importer la base de données [ici](https://github.com/institut-galilee/smart-waiting-line/blob/master/Interface/salon%20(1).sql)
+
 #####**Dans l’éditeur** :
 - Importez votre projet,
 - vous trouverez un Dossier nommer **leb** fais Référence  au librairies utiliser que vous devez télécharger puis elle ne sont pas incluse dans l’éditeur, pour les ajouter c'est simple:
