@@ -16,7 +16,7 @@ Une fois que vous avez préparez votre environnement de travail maintenant vous 
 allez dans la classe Register.java:
 a partir de la ligne 243:
 changer la ligne 245:  
-####code Block
+#### Code Block
 ``` java
 @requires_authorization
 String user = "ecrivez votre mail @gmail.com";
