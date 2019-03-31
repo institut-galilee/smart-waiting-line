@@ -18,6 +18,20 @@ import javax.swing.JOptionPane;
 import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
 import javax.mail.*;
+import static javaapplication1.SimpleQrcodeGenerator.data;
+import static javaapplication1.SimpleQrcodeGenerator.generateMatrix;
+import static javaapplication1.SimpleQrcodeGenerator.writeImage;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.mysql.jdbc.PreparedStatement;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 
 /**
  *
@@ -238,9 +252,22 @@ Connection cnx= null;
             PreparedStatement pre=(PreparedStatement) cnx.prepareStatement(q);
             pre.execute();
             JOptionPane.showMessageDialog(rootPane,"data inserted");
-            this.setVisible(false);
-            new Welcome().setVisible(true);
+            //this.setVisible(false);
+            //new Welcome().setVisible(true);
              try{
+            SimpleQrcodeGenerator Gr=new SimpleQrcodeGenerator (Vmail.getText());//je recupére le mail que le client à inserer
+            final String imageFormat = "png";//format de l'image enregistrer
+            final String outputFileName = "c:/code/CodeQR." + imageFormat;//ou mettre l'image générer 
+            final int size = 400;
+            final BitMatrix bitMatrix;
+             bitMatrix = generateMatrix(data, size);
+                try {
+                    // write in a file
+                    writeImage(outputFileName, imageFormat, bitMatrix);
+                } catch (IOException ex) {
+                    Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 
             String host ="smtp.gmail.com" ;
             String user = "amail@gmail.com";
             String pass = "password";
