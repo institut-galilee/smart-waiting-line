@@ -241,17 +241,24 @@ Connection cnx= null;
     private void VNomActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
     }                                    
-
+public static boolean VerificationMail(String AdresseMail) {
+    String AdressPattern = "^[\\w!#$%&â€™*+/=?`{|}~^-]+(?:\\.[\\w!#$%&â€™*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+    Pattern patt = Pattern.compile(AdressPattern);
+    Matcher mat= patt.matcher(AdresseMail);
+    return mat.matches();
+} //verificationMail
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String nom=VNom.getText();
         String mail=Vmail.getText();
         
+        if(VerificationMail(mail)== true){
         try{
             String q="INSERT INTO client (nom,mail) VALUES ('"+nom+"','"+mail+"')";
             PreparedStatement pre=(PreparedStatement) cnx.prepareStatement(q);
             pre.execute();
-            JOptionPane.showMessageDialog(rootPane,"data inserted");
+            JOptionPane.showMessageDialog(rootPane,"Bienvenue");
             //this.setVisible(false);
             //new Welcome().setVisible(true);
              try{
@@ -309,7 +316,12 @@ Connection cnx= null;
 
         }catch(HeadlessException | SQLException e){
         }
-        
+             this.setVisible(false);
+            new Welcome().setVisible(true);
+            
+         }else{
+        JOptionPane.showMessageDialog(rootPane,"veuillez verfier votre adresse mail");
+    }
     }                                        
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {                                     
