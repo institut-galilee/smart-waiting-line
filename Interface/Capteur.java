@@ -12,6 +12,7 @@ import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import com.github.sarxos.webcam.ds.fswebcam.FsWebcamDriver;
 
 import javax.swing.JFrame;
 import com.github.sarxos.webcam.WebcamPanel;
@@ -43,6 +44,7 @@ public class Capture extends javax.swing.JFrame implements Closeable{
      * Creates new form Capture
      */
     public Capture() {
+	      Webcam.setDriver(new FsWebcamDriver());
         setLayout(new FlowLayout());
 		setTitle("Capture");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
