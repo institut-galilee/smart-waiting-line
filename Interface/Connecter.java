@@ -55,6 +55,7 @@ public class Connecter extends javax.swing.JFrame implements Closeable{
     public Connecter() {
         super();
         initComponents();
+	    cnx=Connexion.connect();
        
 	}
 
@@ -249,12 +250,48 @@ public class Connecter extends javax.swing.JFrame implements Closeable{
 					@Override
 					public void run() {
 						try ( Capture qr=new Capture();) {
-							showMessage("QR code text is:\n" + qr.getResult() + "");//tomporairement avant de l'ajouter directement a notre base de données
-						} catch (InterruptedException ex) {
-							ex.printStackTrace();
-						}
-                                        };
-       });
+				
+					String res="";
+				       String init=qr.getResult();
+				       init=init.substring(0,init.indexOf("-"));
+					//showMessage("QR code text is:\n" + qr.getResult() + "");//tomporairement avant de l'ajouter directement a notre base de données
+						
+               try{
+              
+             String test="SELECT nom FROM fileattente WHERE nom= ('"+init+"')";
+             Statement state = cnx.createStatement();
+             ResultSet result = state.executeQuery(test);
+             result.next();
+            res = result.getString(1);
+            result.close();
+            state.close();
+            ;}catch(Exception e){
+               res="introuvable";
+            }
+              
+            // PreparedStatement prept=(PreparedStatement) cnx.prepareStatement(test);
+            //prept.execute();
+            //System.out.println(prept);
+            
+             if (res=="introuvable"){ 
+            String fil="INSERT INTO fileattente (nom) VALUES ('"+init+"')";
+            PreparedStatement prepf=(PreparedStatement) cnx.prepareStatement(fil);
+            prepf.execute();
+            showMessage("vous etes ajoute Ã  la file");
+            //System.out.println("nana");
+            //showMessage("QR code text is:\n" +qr.getResult()+ "");
+               this.setVisible(false);
+               new Welcome().setVisible(true);
+          
+             }else{
+                showMessage("vous avez dejÃ  Ã©tÃ© ajouter a la file d'attente");
+             } 
+           }catch (InterruptedException ex) {
+           } catch (SQLException ex) {
+              Logger.getLogger(Connecter.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      });
+
        thread.setDaemon(true);
        thread.start();
        pack();
