@@ -255,6 +255,21 @@ public static boolean VerificationMail(String AdresseMail) {
         
         if(VerificationMail(mail)== true){
         try{
+            String res="";
+               try{
+              
+             String test="SELECT nom FROM client WHERE nom= ('"+nom+"')";
+             Statement state = cnx.createStatement();
+             ResultSet result = state.executeQuery(test);
+            result.next();
+            res = result.getString(1);
+            result.close();
+            state.close();
+            ;}catch(Exception e){
+               res="introuvable";
+            }
+               if(res=="introuvable"){
+            
             String q="INSERT INTO client (nom,mail) VALUES ('"+nom+"','"+mail+"')";
             PreparedStatement pre=(PreparedStatement) cnx.prepareStatement(q);
             pre.execute();
@@ -308,18 +323,32 @@ public static boolean VerificationMail(String AdresseMail) {
            transport.connect(host, user, pass);
            transport.sendMessage(msg, msg.getAllRecipients());
            transport.close();
-           System.out.println("message send successfully");
+           //System.out.println("message send successfully");
+           JOptionPane.showMessageDialog(rootPane,"message send successfully");
         }catch(MessagingException ex)
         {
             System.out.println(ex);
         }
 
+      
+        }catch(MessagingException ex)
+        {
+            System.out.println(ex);
+        
+       }catch (WriterException ex) {
+            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+            
+               }
+               else { showMessage("vous Ã©tes dejÃ  insecrit sur notre base de donnÃ©es");
+               this.setVisible(false);
+               }
         }catch(HeadlessException | SQLException e){
         }
-             this.setVisible(false);
+                this.setVisible(false);
             new Welcome().setVisible(true);
-            
-         }else{
+        }else{
         JOptionPane.showMessageDialog(rootPane,"veuillez verfier votre adresse mail");
     }
     }                                        
