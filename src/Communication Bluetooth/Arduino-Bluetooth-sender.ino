@@ -1,6 +1,9 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(11, 10);
+// Pin TX de HC-05 connecté à pin 11 de Arduino
+// Pin RX de HC-05 connecté à pin 10 de Arduino
+SoftwareSerial mySerial(11, 10);  
+
 int rbuttonState = 0;           // état du bouton rouge
 int bbuttonState = 0;           // état du bouton bleu
 int ybuttonState = 0;           // état du bouton jaune
