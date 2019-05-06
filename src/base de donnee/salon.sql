@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 INSERT INTO `client` (`NOM`, `MAIL`, `NUM_TEL`, `COIFFEUR`) VALUES
 ('fredjchahine', 'm.fredj23@gmail.com', '0760825157', 'Fatah'),
+('fatahlarfi', 'fatahlarfi1991@gmail.com', '065959595', 'Fatah'),
 ('ben youssefachraf', 'achrafbya.by@gmail.com ', '0783643089', 'Fatah');
 
 -- --------------------------------------------------------
